@@ -3,7 +3,7 @@
   tasks:
   - name: install required system packages
     apt: name={{ item }} state=latest
-    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg-agent', 'software-properties-common' ]
+    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg-agent', 'software-properties-common', 'python3-pip' ]
   
   - name: add apt key
     apt_key:
@@ -21,23 +21,13 @@
       
   - name: install docker py
     pip:
-      name: docker-py
-      state: absent
-      
-  - name: del docker
-    pip:
-      name: docker
-      state: absent
-      
-  - name: install docker py
-    pip:
       name: docker
       state: latest
       
   - name: deploy container
     docker_container:
       name: devopsproject
-      image: "nebantepermanentnopls/devopsproject:{{ BUILD_NUMBER }}"
+      image: 'nebantepermanentnopls/devopsproject:{{ BUILD_NUMBER }}'
       state: started
       auto_remove: yes
       published_ports:
