@@ -26,7 +26,7 @@
       
   - name: deploy container
     docker_container:
-      name: devopsproject
+      name: app
       image: 'nebantepermanentnopls/devopsproject:{{ BUILD_NUMBER }}'
       state: started
       auto_remove: yes
