@@ -12,8 +12,8 @@
       - 'gnupg-agent'
       - 'software-properties-common'
   
-  - name: add apt-key
-    apt-key:
+  - name: add apt key
+    apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
    
