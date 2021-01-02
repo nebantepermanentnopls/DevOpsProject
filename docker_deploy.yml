@@ -24,11 +24,11 @@
       name: docker
       state: latest
       
-  - name: start docker
-    service:
-      name: docker
-      state: started
-      enabled: yes
+#  - name: start docker
+#    service:
+#      name: docker
+#      state: started
+#      enabled: yes
       
   - name: deploy container
     docker_container:
