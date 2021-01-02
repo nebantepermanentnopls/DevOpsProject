@@ -33,7 +33,7 @@
   - name: deploy container
     docker_container:
       name: simple_index
-      image: "nebantepermanentnopls/devopsproject:{{ BUILD_NUMBER }}"
+      image: "nebantepermanentnopls/devopsproject:latest"
       state: started
       published_ports:
         - 0.0.0.0:80:80
