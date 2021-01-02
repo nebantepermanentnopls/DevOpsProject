@@ -1,34 +1,35 @@
 - hosts: dev
   become: True
   tasks:
-#  - name: apt update 
-#    apt:
-#      update_cache: yes
-#      
-#  - name: apt upgrade
-#    apt:
-#      upgrade: full
-      
-  - name: install pip
+  - name: install required system packages
     apt:
-      name: python3-pip
+      name: {{ item }}
       state: latest
-      
-  - name: install docker-py
-    pip:
-      name: docker-py
-      state: latest
-      
-  - name: install docker
+      loop:
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'curl'
+      - 'gnupg-agent'
+      - 'software-properties-common'
+  
+  - name: add apt-key
+    apt-key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+   
+  - name: add docker rep
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present
+   
+  - name: install docker packages
     apt:
-      name: docker
+      name: {{ item }}
       state: latest
-      
-#  - name: start docker
-#    service:
-#      name: docker
-#      state: started
-#      enabled: yes
+      loop:
+      - 'docker-ce'
+      - 'docker-ce-cli'
+      - 'containerd.io'
       
   - name: deploy container
     docker_container:
