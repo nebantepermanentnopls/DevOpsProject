@@ -32,8 +32,9 @@
       
   - name: deploy container
     docker_container:
-      name: simple_index
+      name: devopsproject
       image: "nebantepermanentnopls/devopsproject:latest"
       state: started
+      auto_remove: yes
       published_ports:
-        - 0.0.0.0:80:80
+        - 80:80
