@@ -1,5 +1,4 @@
----
-hosts: dev
+- hosts: dev
 become: True
 tasks:
   - name: deploy container
