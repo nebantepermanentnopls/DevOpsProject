@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('SCM'){
+            steps{
+                git branch: 'main', credentialsId: 'github', 
+                    url: 'https://github.com/nebantepermanentnopls/DevOpsProject'
+            }
+        }
+        
+        stage('Docker Build'){
+            steps {
+                sh 'docker build . -t nebantepermanentnopls/devopsproject:${BUILD_NUMBER}'               
+            }
+        }
+        
+        stage('DockerHub Publish'){
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
+                }
+                sh 'docker push nebantepermanentnopls/devopsproject:${BUILD_NUMBER}'
+            }
+        }
+        
+        stage('Docker Deploy'){
+            steps {
+                ansiblePlaybook credentialsId: 'ssh-key', disableHostKeyChecking: true, 
+                    extras: "-e BUILD_NUMBER=${BUILD_NUMBER}", installation: 'ansible', inventory: 'hosts.inv', playbook: 'docker_deploy.yml'
+            }
+        }
+    }
+}
