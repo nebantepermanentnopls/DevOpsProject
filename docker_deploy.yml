@@ -1,6 +1,12 @@
 - hosts: dev
   become: True
   tasks:
+  - name: apt update chache
+    apt:
+      update_cache: yes
+      name: docker
+      state: latest
+      
   - name: deploy container
     docker_container:
       name: simple_index
