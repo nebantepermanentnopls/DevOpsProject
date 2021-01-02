@@ -21,7 +21,7 @@
       
   - name: install docker py
     pip:
-      name: del dockerpy
+      name: docker-py
       state: absent
       
   - name: del docker
