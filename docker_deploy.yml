@@ -18,6 +18,20 @@
   - name: install docker packages
     apt: name={{ item }} state=latest
     loop: [ 'docker-ce', 'docker-ce-cli', 'containerd.io' ]
+    
+  - name: delete pip
+    apt:
+      name: pip
+      state: absent
+      
+  - name: install 
+    pip:
+      name: docker
+      
+  - name: install 
+    pip:
+      name: docker-py
+      state: absent
       
   - name: deploy container
     docker_container:
