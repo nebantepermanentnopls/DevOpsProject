@@ -1,11 +1,11 @@
 - hosts: dev
   become: True
   tasks:
-  - name: install pip
+  - name: apt update 
     apt:
       update_cache: yes
       
-  - name: install pip
+  - name: apt upgrade
     apt:
       upgrade: full
       
