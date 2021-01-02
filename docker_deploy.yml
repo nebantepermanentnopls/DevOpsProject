@@ -1,6 +1,6 @@
 - hosts: dev
-become: True
-tasks:
+  become: True
+  tasks:
   - name: deploy container
     docker_container:
       name: simple_index
