@@ -37,7 +37,7 @@
   - name: deploy container
     docker_container:
       name: devopsproject
-      image: "nebantepermanentnopls/devopsproject:latest"
+      image: "nebantepermanentnopls/devopsproject:{{ BUILD_NUMBER }}"
       state: started
       auto_remove: yes
       published_ports:
