@@ -1,11 +1,22 @@
 - hosts: dev
   become: True
   tasks:
+  - name: install docker-py
+    pip:
+      name: docker-py
+      state: latest
+      
   - name: install docker
     apt:
       update_cache: yes
       name: docker
       state: latest
+      
+  - name: start docker
+    service:
+      name: docker
+      state: started
+      enabled: yes
       
   - name: deploy container
     docker_container:
