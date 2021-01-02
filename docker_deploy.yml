@@ -21,12 +21,12 @@
       
   - name: install docker py
     pip:
-      name: docker-py
+      name: del dockerpy
       state: absent
       
-  - name: install docker py
+  - name: del docker
     pip:
-      name: docker-py
+      name: docker
       state: absent
       
   - name: install docker py
