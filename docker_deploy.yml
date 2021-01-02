@@ -2,9 +2,7 @@
   become: True
   tasks:
   - name: install required system packages
-    apt:
-      name: "{{ item }}"
-      state: latest
+    apt: name={{ item }} state=latest
       loop:
       - 'apt-transport-https'
       - 'ca-certificates'
@@ -23,9 +21,7 @@
       state: present
    
   - name: install docker packages
-    apt:
-      name: "{{ item }}"
-      state: latest
+    apt: name={{ item }} state=latest
       loop:
       - 'docker-ce'
       - 'docker-ce-cli'
