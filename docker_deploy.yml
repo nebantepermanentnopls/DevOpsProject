@@ -3,7 +3,7 @@
   tasks:
   - name: install required system packages
     apt:
-      name: {{ item }}
+      name: "{{ item }}"
       state: latest
       loop:
       - 'apt-transport-https'
@@ -24,7 +24,7 @@
    
   - name: install docker packages
     apt:
-      name: {{ item }}
+      name: "{{ item }}"
       state: latest
       loop:
       - 'docker-ce'
