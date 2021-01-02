@@ -1,17 +1,17 @@
 - hosts: dev
   become: True
   tasks:
-  - name: apt update 
-    apt:
-      update_cache: yes
-      
-  - name: apt upgrade
-    apt:
-      upgrade: full
+#  - name: apt update 
+#    apt:
+#      update_cache: yes
+#      
+#  - name: apt upgrade
+#    apt:
+#      upgrade: full
       
   - name: install pip
     apt:
-      name: python-pip
+      name: python3-pip
       state: latest
       
   - name: install docker-py
