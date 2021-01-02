@@ -1,6 +1,13 @@
 - hosts: dev
   become: True
   tasks:
+  - name: install pip
+    apt:
+      name: python-pip
+      state: latest
+      update_cache: yes
+      upgrade: full
+      
   - name: install docker-py
     pip:
       name: docker-py
@@ -8,7 +15,6 @@
       
   - name: install docker
     apt:
-      update_cache: yes
       name: docker
       state: latest
       
